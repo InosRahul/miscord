@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const addUser = async (req, res) => {
+const createUser = async (req, res) => {
   const { userId, userName } = req.body;
 
   axios
     .post(
-      'https://api/chatengine.io/projects/people/',
-      { userName: userName, secret: userId },
-      { headers: { 'Private-Key': process.env.CHAT_ENGINE_PRIVATE_KEY } },
+      'https://api.chatengine.io/projects/people/',
+      { username: userName, secret: userId },
+      { headers: { 'PRIVATE-KEY': process.env.CHAT_ENGINE_PRIVATE_KEY } },
     )
     .then(apiRes => {
       res.json({
@@ -22,3 +22,5 @@ const addUser = async (req, res) => {
       });
     });
 };
+
+export default createUser;

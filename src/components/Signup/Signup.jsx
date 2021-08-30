@@ -3,11 +3,42 @@ import { Form, Formik } from 'formik';
 import { validationSchema, defaultValues } from './signupFormConfig';
 import { FormField } from 'components';
 import { useHistory } from 'react-router-dom';
+import { firebaseService } from 'service';
 export const Signup = () => {
   const history = useHistory();
   const [serverError, setServerError] = useState('');
   const signup = ({ email, userName, password }, { setSubmitting }) => {
-    console.log('values', email, userName, password);
+    firebaseService.auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(res => {
+        if (res?.user?.uid) {
+          fetch('/api/createUser', {
+            method: 'POST',
+            body: JSON.stringify({
+              userName,
+              userId: res.user.uid,
+            }),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }).then(() => {
+            firebaseService.firestore
+              .collection('users')
+              .doc(res.user.uid)
+              .set({ userName, acatar: '' });
+          });
+        } else {
+          setServerError('Trouble signing you up. Please try again');
+        }
+      })
+      .catch(err => {
+        if (err.code === 'auth/email-already-in-use') {
+          setServerError('Account already exists with this email');
+        } else {
+          setServerError('Trouble signing you up. Please try again');
+        }
+      })
+      .finally(() => setSubmitting(false));
   };
   return (
     <div className="auth-form">
