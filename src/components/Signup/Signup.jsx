@@ -25,7 +25,7 @@ export const Signup = () => {
             firebaseService.firestore
               .collection('users')
               .doc(res.user.uid)
-              .set({ userName, acatar: '' });
+              .set({ userName, avatar: '' });
           });
         } else {
           setServerError('Trouble signing you up. Please try again');

@@ -1,6 +1,7 @@
 import { useChat } from 'context/ChatContext';
 import { useEffect } from 'react';
 import { getChats, ChatEngine } from 'react-chat-engine';
+import { LeftSidebar } from 'components';
 
 export const Chat = () => {
   const { myChats, setMyChats, chatConfig, selectedChat } = useChat();
@@ -11,6 +12,7 @@ export const Chat = () => {
 
   return (
     <>
+      <LeftSidebar />
       {!!chatConfig && (
         <ChatEngine
           hideUI={true}
