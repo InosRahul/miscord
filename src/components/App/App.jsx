@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useAuth, useResolved } from 'hooks';
 import { Chat, Signup, Login } from 'components';
 import { Route, Switch, useHistory } from 'react-router-dom';
+import { ChatProvider } from 'context/ChatContext';
 
 export const App = () => {
   const history = useHistory();
@@ -14,13 +15,17 @@ export const App = () => {
     }
   }, [authUser, authResolved, history]);
 
-  return (
-    <div className="app">
-      <Switch>
-        <Route path="/" exact component={Chat}></Route>
-        <Route path="/login" component={Login}></Route>
-        <Route path="/signup" component={Signup}></Route>
-      </Switch>
-    </div>
+  return authResolved ? (
+    <ChatProvider authUser={authUser}>
+      <div className="app">
+        <Switch>
+          <Route path="/" exact component={Chat} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+        </Switch>
+      </div>
+    </ChatProvider>
+  ) : (
+    <>Loading...</>
   );
 };
