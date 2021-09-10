@@ -1,6 +1,7 @@
-import { ChatList } from 'components';
+import React from 'react';
 import { useChat } from 'context';
 import { useResolved } from 'hooks';
+import { ChatList, Header } from 'components';
 import { Loader } from 'semantic-ui-react';
 
 export const LeftSidebar = () => {
@@ -8,6 +9,7 @@ export const LeftSidebar = () => {
   const chatsResolved = useResolved(myChats);
   return (
     <div className="left-rail">
+      <Header />
       {chatsResolved ? (
         <>
           {!!myChats.length ? (
