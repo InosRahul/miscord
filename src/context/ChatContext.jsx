@@ -1,5 +1,5 @@
 import { firebaseService } from 'service';
-import { useState, useEffect, useContext, createContext } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { newChat, leaveChat, deleteChat, getMessages } from 'react-chat-engine';
 
 export const ChatContext = createContext();
@@ -13,7 +13,7 @@ export const ChatProvider = ({ children, authUser }) => {
     newChat(chatConfig, { title: '' });
   };
   const deleteChatClick = chat => {
-    const isAdmin = chat.admin.username === chatConfig.userName;
+    const isAdmin = chat.admin === chatConfig.userName;
 
     if (
       isAdmin &&
