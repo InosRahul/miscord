@@ -69,11 +69,16 @@ export const Chat = () => {
       <div className="chat-container">
         <LeftSidebar />
         <div className="current-chat">
-          {selectedChat ? (
+          {selectedChat?.people?.length === 2 ? (
             <div className="chat">
               <ChatToolbar />
               <MessageList />
               <ChatInput />
+            </div>
+          ) : selectedChat?.people?.length === 1 ? (
+            <div className="chat">
+              <ChatToolbar />
+              <div className="no-chat-add-user">Add Users to Chat</div>
             </div>
           ) : (
             <div className="no-chat-selected">Select A Chat</div>
