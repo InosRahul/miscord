@@ -69,7 +69,7 @@ export const Chat = () => {
       <div className="chat-container">
         <LeftSidebar />
         <div className="current-chat">
-          {selectedChat?.people?.length === 2 ? (
+          {selectedChat?.people?.length >= 2 ? (
             <div className="chat">
               <ChatToolbar />
               <MessageList />
