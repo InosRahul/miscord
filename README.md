@@ -11,3 +11,5 @@ Stack
 5. Vercel
 
 Live Demo - [React-Chat](https://react-chatapp.vercel.app/)
+
+![project-demo](demo.png)
