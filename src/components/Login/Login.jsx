@@ -11,6 +11,7 @@ import { FormField } from 'components/FormField/FormField';
 export const Login = () => {
   const history = useHistory();
   const [serverError, setServerError] = useState('');
+
   const login = ({ email, password }, { setSubmitting }) => {
     firebaseService.auth
       .signInWithEmailAndPassword(email, password)
@@ -39,7 +40,7 @@ export const Login = () => {
         validationSchema={validationSchema}
         initialValues={defaultValues}
       >
-        {({ isValid, isSubmitting }) => (
+        {({ isValid, isSubmitting, setValues }) => (
           <Form>
             <FormField
               identifier="email"
@@ -63,6 +64,16 @@ export const Login = () => {
             <button disabled={isSubmitting || !isValid} type="submit">
               {' '}
               Log in
+            </button>
+            <button
+              className="guest-btn"
+              type="submit"
+              onClick={() =>
+                setValues({ email: 'guest@guest.com', password: 'guestpass' })
+              }
+            >
+              {' '}
+              Log in as Guest User
             </button>
           </Form>
         )}
