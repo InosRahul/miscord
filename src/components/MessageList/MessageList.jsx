@@ -1,6 +1,6 @@
 import { useChat } from 'context';
 import { ChatAvatar } from 'components';
-import { groupMessages } from 'utils';
+import { groupMessages, formatTime } from 'utils';
 import { useScrollToBottom } from 'hooks';
 
 export const MessageList = () => {
@@ -24,14 +24,28 @@ export const MessageList = () => {
             <div className="message-content">
               {m.map((individualMessage, index) => (
                 <div key={index}>
-                  <div className="message-text">{individualMessage.text}</div>
+                  <div className="message-text">
+                    {individualMessage.text}
+                    {!individualMessage.attachments.length ? (
+                      <span className="time-text">
+                        {formatTime(individualMessage.created)}
+                      </span>
+                    ) : (
+                      <></>
+                    )}
+                  </div>
 
                   {!!individualMessage.attachments.length && (
-                    <img
-                      className="message-image"
-                      src={individualMessage.attachments[0].file}
-                      alt={individualMessage.id + '-attachment'}
-                    />
+                    <>
+                      <img
+                        className="message-image"
+                        src={individualMessage.attachments[0].file}
+                        alt={individualMessage.id + '-attachment'}
+                      />
+                      <span className="time-text">
+                        {formatTime(individualMessage.created)}
+                      </span>
+                    </>
                   )}
                 </div>
               ))}
