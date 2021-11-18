@@ -27,15 +27,18 @@ export const ChatList = () => {
           >
             {c.people.length === 1 ? (
               <>
-                <Icon circular inverted color="violet" name="user cancel" />
+                <div>
+                  <Icon circular inverted color="violet" name="user cancel" />
+                </div>
                 <div className="chat-list-preview">
                   <div className="preview-username">{chatTitles(c.title)}</div>
                 </div>
               </>
             ) : c.people.length === 2 ? (
               <>
-                <ChatAvatar username={otherUsers(chatConfig, c)} chat={c} />
-
+                <div>
+                  <ChatAvatar username={otherUsers(chatConfig, c)} chat={c} />
+                </div>
                 <div className="chat-list-preview">
                   <div className="preview-username">{chatTitles(c.title)}</div>
                   <div className="preview-message">
@@ -47,17 +50,17 @@ export const ChatList = () => {
               </>
             ) : (
               <>
-                <Icon circular inverted color="brown" name="users" />
+                <div>
+                  <Icon circular inverted color="brown" name="users" />
+                </div>
                 <div className="chat-list-preview">
-                  <div className="preview-username">
-                    {/* {joinUserName(c.people, chatConfig.userName).slice(0, 50)}
-                    ... */}
-                    {chatTitles(c.title)}
-                  </div>
+                  <div className="preview-username">{chatTitles(c.title)}</div>
                   <div className="preview-message">
                     {c.last_message.attachments.length
                       ? `${c.last_message.sender.username} sent an attachment`
-                      : c.last_message.text.slice(0, 50) + '...'}
+                      : `${
+                          c.last_message.sender.username
+                        } : ${c.last_message.text.slice(0, 50)}...`}
                   </div>
                 </div>
               </>

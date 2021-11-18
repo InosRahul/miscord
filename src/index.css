@@ -113,7 +113,7 @@ code {
   border-radius: 0px;
   background-color: #030a24;
 }
-.chat-list-container button:disabled {
+.left-rail button:disabled {
   color: darkgray;
   cursor: not-allowed;
   background-color: gray;
