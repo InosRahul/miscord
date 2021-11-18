@@ -2,7 +2,7 @@ import React from 'react';
 import { useChat } from 'context';
 import { ChatAvatar } from 'components';
 import { Icon } from 'semantic-ui-react';
-import { joinUserName, otherUsers } from 'utils';
+import { otherUsers, chatTitles } from 'utils';
 
 export const ChatList = () => {
   const {
@@ -12,7 +12,6 @@ export const ChatList = () => {
     selectChatClick,
     deleteChatClick,
   } = useChat();
-
   return (
     <div className="chat-list">
       {myChats.map((c, index) => (
@@ -30,7 +29,7 @@ export const ChatList = () => {
               <>
                 <Icon circular inverted color="violet" name="user cancel" />
                 <div className="chat-list-preview">
-                  <div className="preview-username">No One Added Yet</div>
+                  <div className="preview-username">{chatTitles(c.title)}</div>
                 </div>
               </>
             ) : c.people.length === 2 ? (
@@ -38,9 +37,7 @@ export const ChatList = () => {
                 <ChatAvatar username={otherUsers(chatConfig, c)} chat={c} />
 
                 <div className="chat-list-preview">
-                  <div className="preview-username">
-                    {otherUsers(chatConfig, c)}
-                  </div>
+                  <div className="preview-username">{chatTitles(c.title)}</div>
                   <div className="preview-message">
                     {c.last_message.attachments.length
                       ? `${c.last_message.sender.username} sent an attachment`
@@ -53,8 +50,9 @@ export const ChatList = () => {
                 <Icon circular inverted color="brown" name="users" />
                 <div className="chat-list-preview">
                   <div className="preview-username">
-                    {joinUserName(c.people, chatConfig.userName).slice(0, 50)}
-                    ...
+                    {/* {joinUserName(c.people, chatConfig.userName).slice(0, 50)}
+                    ... */}
+                    {chatTitles(c.title)}
                   </div>
                   <div className="preview-message">
                     {c.last_message.attachments.length

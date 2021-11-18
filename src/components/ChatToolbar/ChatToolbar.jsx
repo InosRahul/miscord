@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useChat } from 'context';
-import { joinUserName } from 'utils';
+import { joinUserName, chatTitles } from 'utils';
 import { Icon } from 'semantic-ui-react';
 import { SearchUsers } from 'components';
 
@@ -12,6 +12,8 @@ export const ChatToolbar = () => {
     <>
       <div className="chat-toolbar">
         <div className="chat-header-text">
+          {chatTitles(selectedChat.title)}
+          {' - '}
           {joinUserName(selectedChat.people, chatConfig.userName).slice(0, 100)}
         </div>
 

@@ -36,14 +36,14 @@ export const Chat = () => {
             if (chat.admin.username === chatConfig.userName) {
               selectChatClick(chat);
             }
-            setMyChats([...myChats, chat].sort((a, b) => a.id - b.id));
+            setMyChats([...myChats, chat].sort((a, b) => b.id - a.id));
           }}
           onDeleteChat={chat => {
             if (selectedChat?.id === chat.id) {
               setSelectedChat(null);
             }
             setMyChats(
-              myChats.filter(c => c.id !== chat.id).sort((a, b) => a.id - b.id),
+              myChats.filter(c => c.id !== chat.id).sort((a, b) => b.id - a.id),
             );
           }}
           onNewMessage={(chatId, message) => {
