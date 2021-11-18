@@ -21,32 +21,32 @@ export const LeftSidebar = () => {
       <Header />
       {chatsResolved ? (
         <>
+          {!!showHide && (
+            <div>
+              <input
+                value={chatTitle}
+                className="chat-title-input"
+                type="text"
+                minLength="5"
+                maxLength="40"
+                autoFocus
+                onInput={e => setChatTitle(e.target.value)}
+                placeholder="Set Chat Title - Min 6 characters"
+              ></input>
+              <span onClick={() => setShowHide(!showHide)}>
+                <Icon name="delete" />
+              </span>
+              <button
+                className="create-chat-title-button"
+                disabled={chatTitle.trim().length < 6 ? true : false}
+                onClick={() => createChat(chatTitle)}
+              >
+                Create chat
+              </button>
+            </div>
+          )}
           {!!myChats.length ? (
             <div className="chat-list-container">
-              {!!showHide && (
-                <div>
-                  <input
-                    value={chatTitle}
-                    className="chat-title-input"
-                    type="text"
-                    minLength="5"
-                    maxLength="40"
-                    autoFocus
-                    onInput={e => setChatTitle(e.target.value)}
-                    placeholder="Set Chat Title - Min 6 characters"
-                  ></input>
-                  <span onClick={() => setShowHide(!showHide)}>
-                    <Icon name="delete" />
-                  </span>
-                  <button
-                    className="create-chat-title-button"
-                    disabled={chatTitle.trim().length < 6 ? true : false}
-                    onClick={() => createChat(chatTitle)}
-                  >
-                    Create chat
-                  </button>
-                </div>
-              )}
               <ChatList />
             </div>
           ) : (
