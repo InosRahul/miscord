@@ -9,11 +9,11 @@ export const ChatProvider = ({ children, authUser }) => {
   const [chatConfig, setChatConfig] = useState();
   const [selectedChat, setSelectedChat] = useState();
 
-  const createChatClick = () => {
-    newChat(chatConfig, { title: '' });
+  const createChatClick = title => {
+    newChat(chatConfig, { title: title });
   };
   const deleteChatClick = chat => {
-    const isAdmin = chat.admin === chatConfig.userName;
+    const isAdmin = chat.admin.username === chatConfig.userName;
 
     if (
       isAdmin &&
