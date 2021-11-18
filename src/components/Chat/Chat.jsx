@@ -60,7 +60,7 @@ export const Chat = () => {
               last_message: message,
             };
             setMyChats(
-              [updatedChat, ...filteredChats].sort((a, b) => a.id - b.id),
+              [updatedChat, ...filteredChats].sort((a, b) => b.id - a.id),
             );
           }}
         />
