@@ -24,27 +24,29 @@ export const MessageList = () => {
             <div className="message-content">
               {m.map((individualMessage, index) => (
                 <div key={index}>
-                  <div className="message-text">
-                    {individualMessage.text}
-                    {!individualMessage.attachments.length ? (
-                      <span className="time-text">
+                  {!individualMessage.attachments.length ? (
+                    <div className="message-text">
+                      {individualMessage.text}
+                      <div className="time-text">
                         {formatTime(individualMessage.created)}
-                      </span>
-                    ) : (
-                      <></>
-                    )}
-                  </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
 
                   {!!individualMessage.attachments.length && (
                     <>
-                      <img
-                        className="message-image"
-                        src={individualMessage.attachments[0].file}
-                        alt={individualMessage.id + '-attachment'}
-                      />
-                      <span className="time-text">
-                        {formatTime(individualMessage.created)}
-                      </span>
+                      <div className="message-text">
+                        <img
+                          className="message-image"
+                          src={individualMessage.attachments[0].file}
+                          alt={individualMessage.id + '-attachment'}
+                        />
+                        <div className="time-text">
+                          {formatTime(individualMessage.created)}
+                        </div>
+                      </div>
                     </>
                   )}
                 </div>

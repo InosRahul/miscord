@@ -349,12 +349,21 @@ code {
   padding-left: 25px;
 }
 .message-text {
+  position: relative;
   font-size: 14px;
-  margin-bottom: 10px;
+  margin: 10px;
+  height: 60%;
+  width: 60%;
+  border-radius: 25px;
+  padding: 20px;
+  background-color: hsla(101, 100%, 29%, 0.19);
 }
 .time-text {
+  position: absolute;
+  right: 0;
+  bottom: 0;
   font-size: 10px;
-  margin-left: 20px;
+  margin: 15px;
 }
 .chat-controls {
   width: 100%;
