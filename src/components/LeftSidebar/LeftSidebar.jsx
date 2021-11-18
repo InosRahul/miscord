@@ -16,6 +16,11 @@ export const LeftSidebar = () => {
     setShowHide(!showHide);
     setChatTitle('');
   };
+  const createChatEnter = event => {
+    if (event.key === 'Enter') {
+      return createChat(event.target.value);
+    }
+  };
   return (
     <div className="left-rail">
       <Header />
@@ -32,6 +37,7 @@ export const LeftSidebar = () => {
                 autoFocus
                 onInput={e => setChatTitle(e.target.value)}
                 placeholder="Set Chat Title - Min 6 characters"
+                onKeyDown={createChatEnter}
               ></input>
               <span onClick={() => setShowHide(!showHide)}>
                 <Icon name="delete" />
