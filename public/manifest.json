@@ -1,5 +1,5 @@
 {
-  "short_name": "React Chat App",
+  "short_name": "Chat App",
   "name": "Chat Application created with React",
   "start_url": ".",
   "display": "standalone",
