@@ -1,6 +1,6 @@
 import { useChat } from 'context';
 import { ChatAvatar } from 'components';
-import { groupMessages, formatTime } from 'utils';
+import { groupMessages, formatDateTime } from 'utils';
 import { useScrollToBottom } from 'hooks';
 
 export const MessageList = () => {
@@ -18,7 +18,10 @@ export const MessageList = () => {
                 username={m[0].sender.username}
                 chat={selectedChat}
               />
-              <div className="message-author">{m[0].sender.username}</div>
+              <div className="message-author">
+                {m[0].sender.username}
+                <span>{formatDateTime.formatDate(m[0].created)}</span>
+              </div>
             </div>
 
             <div className="message-content">
@@ -28,7 +31,7 @@ export const MessageList = () => {
                     <div className="message-text">
                       {individualMessage.text}
                       <div className="time-text">
-                        {formatTime(individualMessage.created)}
+                        {formatDateTime.formatTime(individualMessage.created)}
                       </div>
                     </div>
                   ) : (
@@ -44,7 +47,7 @@ export const MessageList = () => {
                           alt={individualMessage.id + '-attachment'}
                         />
                         <div className="time-text">
-                          {formatTime(individualMessage.created)}
+                          {formatDateTime.formatTime(individualMessage.created)}
                         </div>
                       </div>
                     </>
