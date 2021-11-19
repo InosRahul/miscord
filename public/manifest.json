@@ -1,6 +1,6 @@
 {
-  "short_name": "Chat App",
-  "name": "Chat Application created with React",
+  "short_name": "Miscord",
+  "name": "Micord - Chat Application like Discord - Not exactly",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
